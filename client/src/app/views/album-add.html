@@ -1,0 +1,55 @@
+<div class="col-lg-6" *ngIf="identity && identity.role == 'ROLE_ADMIN'">
+
+        <h1>{{ pageTitle }}</h1>
+
+        <div *ngIf="succesAlbum" class="alert alert-success">
+          {{succesAlbum}}
+        </div>
+
+        <div *ngIf="errorAlbum" class="alert alert-danger">
+          {{errorAlbum}}
+        </div>
+
+        <form #formAlbum="ngForm" (submit)="onSubmit()">
+
+          <p>
+              <label>Titulo: </label>
+              <input type="text" #title="ngModel" name="title" [(ngModel)]="album.title"
+                      required class="form-control"/>
+                <span class="alert alert-danger" *ngIf="!title.valid && title.touched && !succesAlbum">
+                    El titulo es obligatorio
+                </span>
+          </p>
+
+          <p>
+              <label>Descripción: </label>
+              <textarea type="text" #description="ngModel" name="description" [(ngModel)]="album.description"
+                      required class="form-control"></textarea>
+                <span class="alert alert-danger" *ngIf="!description.valid && description.touched && !succesAlbum">
+                    La descripción es oblicatoria
+                </span>
+          </p>
+
+          <p>
+              <label>Año: </label>
+              <input type="text" #year="ngModel" name="year" [(ngModel)]="album.year"
+                      required class="form-control"/>
+                <span class="alert alert-danger" *ngIf="!year.valid && year.touched && !succesAlbum">
+                    El año es obligatorio
+                </span>
+          </p>
+
+          <div *ngIf="isEdit">
+            <div class="album_image_for_edit" *ngIf="album && album.image && album.image != null && album.image != 'null'">
+                <img src="{{url + 'get-album-image/' + album.image}}" />
+            </div>
+            <p>
+                <label>Sube la imagen del album.</label>
+                <input type="file" placeholder="Subir imagen..." (change)="fileChangeEvent($event)" />
+            </p>
+          </div>
+
+          <input type="submit" value="{{pageTitle}}" [disabled]="!formAlbum.form.valid" class="btn btn-success"/>
+
+        </form>
+</div>

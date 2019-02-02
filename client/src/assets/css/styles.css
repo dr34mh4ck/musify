@@ -1,0 +1,252 @@
+html, body{
+  margin: 0px;
+  height: 100%;
+  background: #eee;
+}
+
+.head-title{
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  display:block;
+}
+
+.navigation{
+  text-align: center;
+  color: white;
+  background: #1c1c1f;
+  height: 100%;
+}
+
+.navigation a{
+  color: #ddd;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navigation a:hover{
+  color: white;
+}
+
+
+.navigation .glyphicon{
+  font-size: 25px;
+  display: block;
+  width: 100%;
+}
+
+#user_logged{
+  text-decoration : center;
+  background:  #1c1c1f;
+  position: absolute;
+  bottom: 0px;
+  border-top: 1px solid #444;
+  width: 75%;
+}
+
+#user_logged .user_image{
+  background: #eee;
+  border-radius: 100px;
+  height: 57px;
+  width: 57px;
+  margin: 0px auto;
+  margin-top: 15px;
+  overflow: hidden;
+}
+
+#user_logged .user_image img{
+  width: 100%;
+  height: 100%;
+}
+
+.actived{
+  border-bottom: 4px solid #84BD00;
+  padding-bottom: 4px;
+}
+
+.central{
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.artist_image_for_edit img,
+.album_image_for_edit img{
+  width: 150px;
+}
+
+
+.artists-list,
+.album-list{
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  min-height: 400px;
+}
+
+.album-list{
+  height: auto;
+  margin-bottom: 750px;
+}
+
+
+.artist-item{
+  width: 23%;
+  padding: 0px;
+  margin: 0px;
+  height: 281px;
+  border: 1px solid #444;
+  margin-left: 20px;
+  margin-top: 20px;
+  background: #222326;
+}
+
+.album-item{
+  width: 23%;
+  padding: 0px;
+  margin: 0px;
+  height: 299px;
+  border: 1px solid #444;
+  margin-left: 20px;
+  margin-top: 20px;
+  background: #222326;
+}
+
+.artist-item .artist-image{
+  height: 210px;
+  width: 100%;
+  overflow: hidden;
+  background: black;
+}
+
+.artist-item .artist-image img{
+  width: 100%;
+  height: 100%;
+}
+
+.album-item .album-image{
+  height: 188px;
+  overflow: hidden;
+  background: black;
+}
+
+.album-item{
+  height: 299px;
+  margin-bottom: 20px;
+}
+
+.album-item .album-image img{
+  width: 100%;
+  height: 100%;
+}
+
+.artist-item .artist-name,
+.album-item .album-name {
+  color : white;
+  padding: 10px;
+  background: #222326;
+}
+
+
+.artist-item .artist-name a,
+.album-item .album-name a{
+  color : white;
+}
+
+.artist-head-card .image,
+.album-head-card .image{
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  float: left;
+  margin-right: 30px;
+}
+
+.artist-head-card .image img{
+  height: 100%;
+  width: 100%;
+}
+
+.album-head-card .image img{
+  height: 100%;
+  width: 100%;
+}
+
+.album-head-card .image{
+  height: 175px;
+}
+
+.seguro{
+  margin-top: -30px;
+  position: absolute;
+  background: #222326;
+}
+
+#songs-list {
+  margin: 0px;
+  padding: 0px;
+  padding-bottom: 200px;
+}
+
+.song-item{
+  list-style: none;
+  border-bottom: 1px solid #ccc;
+  padding-top: 3px;
+}
+
+.song-item .title{
+  padding: 12px;
+}
+
+.song-item .btn-success{
+  margin-right: 20px
+}
+
+.song-item .buttons{
+  float: right;
+}
+
+.seguro-song {
+  position: absolute;
+  right: 10px;
+  background: #eee;
+  margin-top: -34px;
+}
+
+.player{
+  background: #1c1c1f;
+  position: fixed;
+  width: 90.5%;
+  bottom: 0;
+  padding: 20px;
+  margin-left: -15px;
+  border-left: 1px solid #444;
+  color: gray;
+}
+
+.player .album-image{
+  float: left;
+  width: 138px;
+  height: 105px;
+  overflow: hidden;
+}
+
+.player .album-image img {
+  height: 100%;
+}
+
+.player .audio-file{
+  width: 85%;
+  height: 40px;
+  margin-top: 7px;
+  margin-left: 10px;
+  float: left;
+}
+
+.player audio{
+  width: 100%;
+  height: 40px;
+}

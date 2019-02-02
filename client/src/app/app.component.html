@@ -1,0 +1,141 @@
+<div *ngIf='identity' class="navigation col-lg-1">
+    <h1 class="head-title">
+      <a [routerLink]="['/']">
+          <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
+          {{title}}
+      </a>
+    </h1>
+    <nav id="navigation">
+            <a href="#">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                Buscar
+            </a>
+            <a [routerLink]="['/artistas',1]" [routerLinkActive]="['actived']">
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                Artistas
+            </a>
+            <a href="#">
+                <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+                Albums
+            </a>
+    </nav>
+    <nav id="user_logged">
+      <div class="user_image">
+          <img id="img_usr" src="{{url + 'get-user-image/' + identity.image}}"/>
+      </div>
+          <span id="identity_name">
+            {{identity.name}}
+          </span>
+          <a [routerLink]="['/mis-datos']" [routerLinkActive]="['actived']">
+              <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              Ajustes
+          </a>
+          <a (click)='logout()'>
+              <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+              Salir.
+          </a>
+    </nav>
+</div>
+
+
+<div [class.hidden]='!identity' class="central col-lg-11">
+    <router-outlet></router-outlet>
+    <div class="clearfix"></div>
+    <player class="player"></player>
+</div>
+
+
+<div *ngIf='!identity' class="col-lg-11">
+    <div class="col-lg-6">
+      <h1>Identificate!</h1>
+      <form #loginForm='ngForm' (ngSubmit)='onSubmit()' class="col-md-7">
+          <p>
+            <span *ngIf="errorLogin">
+              <div class="alert alert-danger">
+                  {{errorLogin}}
+              </div>
+            </span>
+            <label>Correo electrónico: </label>
+            <input #email='ngModel' name="email" [(ngModel)]='user.email'
+                   type="email" class="form-control" required />
+            <span *ngIf="!email.valid && email.touched">
+              <div class="alert alert-danger">
+                El email es obligatorio.
+              </div>
+            </span>
+          </p>
+          <p>
+            <label>Contraseña: </label>
+            <input #password='ngModel' name="password" [(ngModel)]='user.password'
+                   type="password" class="form-control" required />
+             <span *ngIf="!password.valid && password.touched">
+               <div class="alert alert-danger">
+                 La contraseña es obligatoria.
+               </div>
+             </span>
+          </p>
+
+          <input type="submit" value="Entrar" class="btn-primary" />
+
+      </form>
+    </div>
+
+    <div class="col-lg-6">
+      <h1>Registrate!</h1>
+      <form #resgisterForm="ngForm" (ngSubmit)="onRegister()" class="col-md-7">
+        <p>
+          <span *ngIf="errorRegister">
+            <div class="alert alert-danger">
+              {{errorRegister}}
+            </div>
+          </span>
+          <span *ngIf="registerSuccess">
+            <div class="alert alert-success">
+              {{registerSuccess}}
+            </div>
+          </span>
+          <label>Nombre: </label>
+          <input #name="ngModel" name="name" [(ngModel)]="userRegister.name"
+                 type="text" class="form-control" required />
+                 <span *ngIf="!name.valid && name.touched && !registerSuccess">
+                   <div class="alert alert-danger">
+                     El nombre es obligatorio.
+                   </div>
+                 </span>
+        </p>
+        <p>
+          <label>Apellidos: </label>
+          <input #surename="ngModel" name="surename" [(ngModel)]="userRegister.surename"
+                 type="text" class="form-control" required />
+                 <span *ngIf="!surename.valid && surename.touched && !registerSuccess">
+                   <div class="alert alert-danger">
+                     Los apellidos son obligatorios.
+                   </div>
+                 </span>
+        </p>
+        <p>
+          <label>Correo electrónico: </label>
+          <input #emailr="ngModel" name="emailr" [(ngModel)]="userRegister.email"
+                 type="text" class="form-control" required />
+                 <span *ngIf="!emailr.valid && emailr.touched && !registerSuccess">
+                   <div class="alert alert-danger">
+                     El email es obligatorio.
+                   </div>
+                 </span>
+        </p>
+        <p>
+          <label>Contraseña: </label>
+          <input #passwordr="ngModel" name="passwordr" [(ngModel)]="userRegister.password"
+                 type="password" class="form-control" required />
+                 <span *ngIf="!passwordr.valid && passwordr.touched && !registerSuccess">
+                   <div class="alert alert-danger">
+                     La contraseña es obligatoria.
+                   </div>
+                 </span>
+        </p>
+
+        <input type="submit" value="Registrar" class="btn-primary" />
+
+      </form>
+    </div>
+</div>

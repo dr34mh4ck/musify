@@ -1,0 +1,56 @@
+<div class="col-lg-6">
+  <h1>{{title}}</h1>
+  <form #userUpdateForm="ngForm" (ngSubmit)="onUpdate()" class="col-md-7">
+    <p>
+      <span *ngIf="errorupdate">
+        <div class="alert alert-danger">
+          {{errorupdate}}
+        </div>
+      </span>
+      <span *ngIf="updateSuccess">
+        <div class="alert alert-success">
+          {{updateSuccess}}
+        </div>
+      </span>
+      <label>Nombre: </label>
+      <input #name="ngModel" name="name" [(ngModel)]="user.name"
+             type="text" class="form-control" required />
+             <span *ngIf="!name.valid && name.touched && !updateSuccess">
+               <div class="alert alert-danger">
+                 El nombre es obligatorio.
+               </div>
+             </span>
+    </p>
+    <p>
+      <label>Apellidos: </label>
+      <input #surename="ngModel" name="surename" [(ngModel)]="user.surename"
+             type="text" class="form-control" required />
+             <span *ngIf="!surename.valid && surename.touched && !updateSuccess">
+               <div class="alert alert-danger">
+                 Los apellidos son obligatorios.
+               </div>
+             </span>
+    </p>
+    <p>
+      <label>Correo electrónico: </label>
+      <input #emailr="ngModel" name="emailr" [(ngModel)]="user.email"
+             type="text" class="form-control" required />
+             <span *ngIf="!emailr.valid && emailr.touched && !updateSuccess">
+               <div class="alert alert-danger">
+                 El email es obligatorio.
+               </div>
+             </span>
+    </p>
+
+    <div class="image_for_edit" *ngIf="user.image && user.image != null && user.image != 'null'">
+        <img src="{{url + 'get-user-image/' + user.image}}" style="width:100px;"/>
+    </div>
+    <p>
+      <label>Sube tu foto: </label>
+      <input type="file" placeholder="subir imagen..." (change)="fileChangeEvent($event)"/>
+    </p>
+
+    <input type="submit" value="Actualizar" class="btn-primary" />
+
+  </form>
+</div>

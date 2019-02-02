@@ -1,0 +1,60 @@
+<div class="col-lg-6" *ngIf="identity && identity.role == 'ROLE_ADMIN'">
+
+    <h1>{{pageTitle}}</h1>
+
+    <div *ngIf="succesSong" class="alert alert-success">
+      {{succesSong}}
+    </div>
+
+    <div *ngIf="errorSong" class="alert alert-danger">
+      {{errorSong}}
+    </div>
+
+    <form #formSong="ngForm" (submit)="onSubmit()">
+
+      <p>
+          <label>Número: </label>
+          <input type="text" #number="ngModel" name="number" [(ngModel)]="song.number"
+                  required class="form-control"/>
+            <span class="alert alert-danger" *ngIf="!number.valid && number.touched && !succesSong">
+                El número de canción es obligatorio
+            </span>
+      </p>
+
+      <p>
+          <label>Titulo: </label>
+          <input type="text" #name="ngModel" name="name" [(ngModel)]="song.name"
+                  required class="form-control"/>
+            <span class="alert alert-danger" *ngIf="!name.valid && name.touched && !succesSong">
+                El titulo es obligatorio
+            </span>
+      </p>
+
+      <p>
+          <label>Duración: </label>
+          <input type="text" #duration="ngModel" name="duration" [(ngModel)]="song.duration"
+                  required class="form-control" />
+            <span class="alert alert-danger" *ngIf="!duration.valid && duration.touched && !succesSong">
+                La duración es oblicatoria
+            </span>
+      </p>
+
+      <div *ngIf="isEdit">
+          <div class="song_file_for_edit" *ngIf="song && song.file && song.file != null && song.file != 'null'">
+              <audio controls>
+                  <source src="{{url + 'get-song-file/' + song.file}}" type="audio/mpeg" >
+                    El navegador no soporta la reproducción de audio.
+              </audio>
+          </div>
+          <p>
+              <label>Sube el archivo de audio.</label>
+              <input type="file" placeholder="Subir archivo..." (change)="fileChangeEvent($event)" />
+          </p>
+      </div>
+
+      <input type="submit" value="{{pageTitle}}" [disabled]="!formSong.form.valid" class="btn btn-success"/>
+
+
+    </form>
+
+</div>

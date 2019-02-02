@@ -1,0 +1,50 @@
+<div class="col-lg-6" *ngIf="identity && identity.role == 'ROLE_ADMIN'">
+      <h1>{{title}}</h1>
+
+      <div *ngIf="succesArtist" class="alert alert-success">
+        {{succesArtist}}
+      </div>
+
+      <div *ngIf="errorArtist" class="alert alert-danger">
+        {{errorArtist}}
+      </div>
+
+      <form #formArtist="ngForm" (ngSubmit)="onSubmit()" >
+
+            <p>
+                <label>Nombre: </label>
+                <input type="text" #name="ngModel" name="name" [(ngModel)]="artist.name"
+                        required class="form-control"/>
+                  <span class="alert alert-danger" *ngIf="!name.valid && name.touched && !succesArtist">
+                      El nombre es obligatorio
+                  </span>
+            </p>
+
+            <p>
+                <label>Descripción: </label>
+                <textarea type="text" #description="ngModel" name="description" [(ngModel)]="artist.description"
+                        required class="form-control"></textarea>
+                  <span class="alert alert-danger" *ngIf="!description.valid && description.touched && !succesArtist">
+                      La descripción es oblicatoria
+                  </span>
+            </p>
+
+            <div *ngIf="isEdit">
+                <div class="artist_image_for_edit" *ngIf="artist && artist.image && artist.image != null && artist.image != 'null'">
+                    <img src="{{url + 'get-artist-image/' + artist.image}}" />
+                </div>
+                <p>
+                    <label>Sube la imagen del artista.</label>
+                    <input type="file" placeholder="Subir imagen..." (change)="fileChangeEvent($event)" />
+                </p>
+            </div>
+
+            <input type="submit" value="{{title}}" [disabled]="!formArtist.form.valid" class="btn btn-success"/>
+
+      </form>
+</div>
+
+<div class="col-lg-2 col-lg-offset-5 alert alert-warning" *ngIf="!identity || identity.role != 'ROLE_ADMIN'">
+  <h1>Error</h1>
+  <p>Acceso no autorizado!</p>
+</div>
